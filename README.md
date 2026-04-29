@@ -32,17 +32,6 @@ Além do armazenamento dos dados, o sistema implementa as seguintes funcionalida
 
 ---
 
-## Funcionalidades
-
-| Funcionalidade | Descrição |
-|---------------|-----------|
-| Cadastro | Insere um novo álbum no banco |
-| Edição | Atualiza informações existentes |
-| Exclusão | Remove um álbum selecionado |
-| Consulta | Exibe todos os registros |
-
----
-
 ## Objetivo
 
 O objetivo principal deste projeto é aplicar conceitos de:
