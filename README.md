@@ -3,6 +3,7 @@
 ## Descrição do Projeto
 
 Este projeto consiste no desenvolvimento de uma aplicação **CRUD (Create, Read, Update, Delete)** para gerenciamento de álbuns musicais.  
+O projeto não está completo e posteriormente serão adicionados novas funcionalidades, melhorias para estudos de UX/UI,e refatoração dos primeiros códigos.
 O sistema permite o cadastro e armazenamento das seguintes informações em um banco de dados:
 
 - **Nome do álbum**
