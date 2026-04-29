@@ -23,13 +23,13 @@ Além do armazenamento dos dados, o sistema implementa as seguintes funcionalida
 
 ### Backend
 - Java  
-- API para manipulação dos dados  
-- Integração com banco de dados relacional  
+- SpringBoot
+- API Rest
+- MariaDB
 
 ### Frontend
 - JavaScript  
-- React  
-- Interface interativa para gerenciamento dos registros    
+- React      
 
 ---
 
