@@ -28,6 +28,8 @@ Além do armazenamento dos dados, o sistema implementa as seguintes funcionalida
 - MariaDB
 
 ### Frontend
+-HTML
+-CSS
 - JavaScript  
 - React      
 
