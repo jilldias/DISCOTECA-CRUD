@@ -1,38 +1,58 @@
-import { useEffect, useState } from "react";
-import api from "./services/api";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const [albums, setAlbums] = useState([]);
   const [nomeAlbum, setNomeAlbum] = useState("");
   const [artista, setArtista] = useState("");
   const [ano, setAno] = useState("");
+  const [editingId, setEditingId] = useState(null);
 
-  const carregarAlbuns = async () => {
-    const response = await api.get("/albums");
-    setAlbums(response.data);
-  };
+  const api = "http://localhost:8080/albums";
 
   useEffect(() => {
     carregarAlbuns();
   }, []);
 
+  const carregarAlbuns = async () => {
+    const response = await axios.get(api);
+    setAlbums(response.data);
+  };
+
   const salvarAlbum = async () => {
-    await api.post("/albums", {
+    const album = {
       nomeAlbum,
       artista,
       ano
-    });
+    };
 
-    setNomeAlbum("");
-    setArtista("");
-    setAno("");
+    if (editingId) {
+      await axios.put(`${api}/${editingId}`, album);
+      setEditingId(null);
+    } else {
+      await axios.post(api, album);
+    }
 
+    limparCampos();
     carregarAlbuns();
   };
 
-  const deletarAlbum = async (id) => {
-    await api.delete(`/albums/${id}`);
+  const excluirAlbum = async (id) => {
+    await axios.delete(`${api}/${id}`);
     carregarAlbuns();
+  };
+
+  const editarAlbum = (album) => {
+    setNomeAlbum(album.nomeAlbum);
+    setArtista(album.artista);
+    setAno(album.ano);
+    setEditingId(album.id);
+  };
+
+  const limparCampos = () => {
+    setNomeAlbum("");
+    setArtista("");
+    setAno("");
   };
 
   return (
@@ -60,16 +80,25 @@ function App() {
         onChange={(e) => setAno(e.target.value)}
       />
 
-      <button onClick={salvarAlbum}>Salvar</button>
+      <button onClick={salvarAlbum}>
+        {editingId ? "Atualizar" : "Salvar"}
+      </button>
 
-      <ul>
-        {albums.map((album) => (
-          <li key={album.id}>
-            {album.nomeAlbum} - {album.artista} ({album.ano})
-            <button onClick={() => deletarAlbum(album.id)}>Excluir</button>
-          </li>
-        ))}
-      </ul>
+      <hr />
+
+      {albums.map((album) => (
+        <div key={album.id}>
+          <strong>{album.nomeAlbum}</strong> - {album.artista} ({album.ano})
+
+          <button onClick={() => editarAlbum(album)}>
+            Editar
+          </button>
+
+          <button onClick={() => excluirAlbum(album.id)}>
+            Excluir
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

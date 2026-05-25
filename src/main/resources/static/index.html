@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DISCOTECA</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="jukebox-frame">
+      <header class="jukebox-header">
+        <div class="header-title">
+          <div class="title-text">DISCOTECA</div>
+        </div>
+      </header>
+
+      <main class="content-grid">
+        <section class="form-panel">
+          <div class="section-title">
+            <span>ADICIONAR / ALTERAR DISCO</span>
+          </div>
+
+          <div class="form-card">
+            <label class="field">
+              <span>DISCO</span>
+              <input id="albumName" type="text" placeholder="Digite o nome do disco" />
+            </label>
+
+            <label class="field">
+              <span>CANTOR / BANDA</span>
+              <input id="artistName" type="text" placeholder="Digite o nome do cantor / banda" />
+            </label>
+
+            <label class="field">
+              <span>ANO</span>
+              <input id="year" type="number" placeholder="Digite o ano de lançamento" min="1900" max="2099" />
+            </label>
+
+            <div class="button-row">
+<button id="saveButton" class="btn btn-primary">🎵 SALVAR DISCO</button>
+              <button id="clearButton" class="btn btn-secondary">LIMPAR</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="list-panel">
+          <div class="section-title">
+            <span>ALBUNS SALVOS</span>
+          </div>
+
+          <div class="list-header">
+            <span>DISCO</span>
+            <span>CANTOR / BANDA</span>
+            <span>ANO</span>
+            <span>AÇÕES</span>
+          </div>
+
+          <div id="albumList" class="album-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="vinyl-area">
+      <div class="vinyl-disc"></div>
+      <div class="tonearm"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

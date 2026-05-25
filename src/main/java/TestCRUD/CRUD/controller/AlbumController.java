@@ -11,8 +11,8 @@ import java.util.List;
 //Classe responsável por receber as requisições HTTP e delegar as operações para o serviço
 @RestController
 
-//Classe que define o caminho base para as requisições relacionadas a álbuns
-@RequestMapping("/albums")
+//Classe que define o caminho base para as requisições relacionadas à discoteca
+@RequestMapping("/discoteca")
 
 //Permite requisições de origem cruzada (CORS) para o frontend
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173", "http://localhost:4173"})
@@ -65,7 +65,17 @@ public class AlbumController {
     //Endpoint para atualizar um álbum existente
     @PutMapping("/{id}")
     public ResponseEntity<Album> atualizarAlbum(@PathVariable Long id, @RequestBody Album album) {
+        try {
+            Album atualizado = albumService.atualizarAlbum(id, album);
+            return ResponseEntity.ok(atualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
+    //Endpoint para excluir um álbum existente
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarAlbum(@PathVariable Long id) {
         if (albumService.deletarAlbum(id)) {
             return ResponseEntity.noContent().build();
         }
